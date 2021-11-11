@@ -29,6 +29,7 @@ class Adamant:
             self._pull_update()
         else:
             self._clone_repo()
+            self._set_repo_root_directory()
 
     def _is_cloned(self):
         return Path(
