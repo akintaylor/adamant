@@ -101,7 +101,9 @@ class Adamant:
         ax = fig.add_axes([0, 0, 1, 1])
         ax.bar(x_axis, y_axis)
         ax.set_title(
-            f'Number of Commits for each {directory_name}/ subdirectory'
+            f'Fig. 1: A barchart showing the twelve most active modules by '
+            f'commit in the {directory_name} directory for the last six '
+            f'months.', fontdict={'fontsize': 12}, pad=10
         )
         plt.xlabel("Modules")
         plt.ylabel("Number of Commits")
@@ -166,13 +168,16 @@ class Adamant:
 
         plt.xticks(rotation=45)
 
-        ax.bar(labels, deletions,
-               label='Number of lines deleted', color='indianred')
         ax.bar(labels, inserts, bottom=deletions,
                label='Number of lines added', color='mediumseagreen')
+        ax.bar(labels, deletions,
+               label='Number of lines deleted', color='indianred')
 
         ax.set_ylabel('Churn')
-        ax.set_title(f'Churn for each {directory_name}/ subdirectory')
+        ax.set_title(f'Fig. 2: A barchart showing the twelve most active '
+                     f'modules by *churn in the {directory_name} directory '
+                     f'for the last six months.',
+                     fontdict={'fontsize': 12}, pad=10)
         ax.legend()
 
         if not Path(f'{self.root_dir}/.images').exists():
