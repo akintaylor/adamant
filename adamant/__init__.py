@@ -1,10 +1,13 @@
 import datetime
+import logging
 import os
 import subprocess
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 from dateutil.relativedelta import relativedelta
+
+logging.basicConfig(level=logging.INFO)
 
 
 class Adamant:
@@ -70,6 +73,10 @@ class Adamant:
             self,
             directory_name='.'
     ):
+        logging.info(
+            f' Getting the 12 most active modules for the past six months in '
+            f'{self.repo_name}/{directory_name} directory by commits'
+        )
 
         present_date, past_date = self.get_present_and_past_date(month=6)
 
@@ -90,6 +97,8 @@ class Adamant:
                                 key=lambda kv: (kv[1], kv[0]), reverse=True)
 
         twelve_most_active_modules = sorted_commits[:12]
+
+        logging.info(twelve_most_active_modules)
 
         x_axis, y_axis = [], []
 
@@ -119,10 +128,17 @@ class Adamant:
 
         self._return_to_repo_root_dir()
 
+        return twelve_most_active_modules
+
     def most_active_modules_by_churn_in_directory_from_last_six_months(
             self,
             directory_name='.'
     ):
+
+        logging.info(
+            f' Getting the 12 most active modules for the past six months in '
+            f'{self.repo_name}/{directory_name} directory by churn'
+        )
 
         present_date, past_date = self.get_present_and_past_date(month=6)
 
@@ -157,6 +173,8 @@ class Adamant:
 
         twelve_most_active_modules = sorted_churns[:12]
 
+        logging.info(twelve_most_active_modules)
+
         labels, inserts, deletions = [], [], []
 
         for label, (num_inserts, num_deletions) in twelve_most_active_modules:
@@ -189,3 +207,5 @@ class Adamant:
         )
 
         self._return_to_repo_root_dir()
+
+        return twelve_most_active_modules
