@@ -1,3 +1,4 @@
 .idea
 .repos
 .images
+**/__pycache__/**
