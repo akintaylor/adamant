@@ -6,7 +6,7 @@ To have Python (v3.8.5) installed in your computer:
 https://www.python.org/downloads/
 ```
 
-## **- Clone project**
+## **- Clone project**
 ```
 git clone git@github.com:akintaylor/adamant.git
 ```
